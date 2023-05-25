@@ -14,7 +14,7 @@ function App() {
   return (
     <div className="Blog-Section">
       <h1>
-        <img src={logo}></img>My Blog App
+        <img className="logo" src={logo}></img>My Blog App
       </h1>
       <BlogForm onSubmit={handleBlogSubmit} />
       <BlogList blogs={blogs} />

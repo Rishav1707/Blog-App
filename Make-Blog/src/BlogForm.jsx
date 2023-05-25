@@ -23,6 +23,19 @@ export default function BlogForm({ onSubmit }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (title.trim() === "") {
+      alert("Article title cannot be left blank");
+      return;
+    }
+    if (content.trim() === "") {
+      alert("Article content cannot be left blank");
+      return;
+    }
+    if (image === null) {
+      alert("No file chosen");
+      return;
+    }
+
     // Create a new blog object
     const newBlog = {
       title,
@@ -42,9 +55,9 @@ export default function BlogForm({ onSubmit }) {
 
   return (
     <form className="Form-element" onSubmit={handleSubmit}>
-      <input
+      <textarea
+        maxLength="150"
         className="input-element"
-        type="text"
         value={title}
         onChange={handleTitleChange}
         placeholder="Article Title..."
@@ -61,7 +74,7 @@ export default function BlogForm({ onSubmit }) {
         onChange={handleImageChange}
       />
       <button type="submit">
-        <img src={write}></img>Create
+        <img className="write-logo" src={write}></img>Create
       </button>
     </form>
   );
