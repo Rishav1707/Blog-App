@@ -1,0 +1,14 @@
+.login-container {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-container img {
+    border-radius: 2rem;
+}
+
+.login-container button {
+    gap: 1rem;
+}

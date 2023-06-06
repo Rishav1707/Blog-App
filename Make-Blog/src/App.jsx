@@ -1,24 +1,26 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import CreatePost from "./pages/CreatePost";
+import Login from "./pages/Login";
+import Home from "./pages/Home";
+import NavBar from "./components/NavBar";
 import { useState } from "react";
-import BlogForm from "./BlogForm";
-import BlogList from "./BlogList";
-import logo from "./assets/logo.svg";
 import "./App.css";
 
 function App() {
-  const [blogs, setBlogs] = useState([]);
-
-  const handleBlogSubmit = (newBlog) => {
-    setBlogs([...blogs, newBlog]);
-  };
-
+  const [isAuth, setisAuth] = useState(false);
   return (
-    <div className="Blog-Section">
-      <h1>
-        <img className="logo" src={logo}></img>My Blog App
-      </h1>
-      <BlogForm onSubmit={handleBlogSubmit} />
-      <BlogList blogs={blogs} />
-    </div>
+    <BrowserRouter>
+      <NavBar isAuth={isAuth} />
+      <Routes>
+        <Route exact path="/" element={<Home />} />
+        <Route exact path="/create" element={<CreatePost />} />
+        <Route
+          exact
+          path="/login"
+          element={<Login isAuth={isAuth} setisAuth={setisAuth} />}
+        />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
