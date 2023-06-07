@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
+.Navbar-content {
+    background-color: #475569;
+    position: absolute;
+    z-index: 999;
+    top: 1rem;
+    left: 1.5rem;
+}
+
 .Navbar-list {
     list-style: none;
     display: flex;
@@ -37,6 +45,7 @@ li {
 }
 
 .blognode {
+    margin: 0;
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -47,7 +56,22 @@ li {
 }
 
 @media only screen and (max-width: 768px) {
-    li {
+
+    .Navbar-content {
+        width: 100%;
+        height: 4rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        top: 0;
+        left: 0;
+    }
+
+    .show-menu {
+        display: flex;
+    }
+
+    .hide-menu {
         display: none;
     }
 
@@ -61,8 +85,12 @@ li {
     }
 
     .Navbar-list {
-        justify-content: space-between;
-        height: 4rem;
+        flex-direction: column;
+        margin-top: 4rem;
+        height: 15rem;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+        z-index: 999;
     }
 
     .material-symbols-outlined {

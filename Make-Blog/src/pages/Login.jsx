@@ -31,7 +31,7 @@ export default function Login({ isAuth, setisAuth }) {
   return (
     <>
       <div className="login-container">
-        {isAuth ? <h1>Logout Page</h1> : <h1>Login Page</h1>}
+        {isAuth ? <h1>Click 👇🏻 to Logout</h1> : <h1>Click 👇🏻 to Login</h1>}
         {isAuth ? (
           <button onClick={logOut}>Logout</button>
         ) : (
