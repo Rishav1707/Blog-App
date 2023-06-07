@@ -4,12 +4,18 @@ import home from "../assets/home.svg";
 import create from "../assets/create.svg";
 import login from "../assets/login.svg";
 import logout from "../assets/logout.svg";
+import blognode from "../assets/blognode.svg";
 import "./NavBar.css";
 
 export default function NavBar({ isAuth }) {
   return (
     <nav>
       <ul className="Navbar-list">
+        <h2 className="blognode">
+          <img className="blognode-img" src={blognode} alt="Logo" />
+          Blognode
+        </h2>
+        <span className="material-symbols-outlined">menu</span>
         <li>
           <Link to="/">
             <img src={home} />

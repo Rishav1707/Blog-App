@@ -7,7 +7,7 @@ export default function CreatePost() {
     <div className="Blog-Section">
       <h1>
         <img className="logo" src={logo} />
-        My Blog App
+        Create Post
       </h1>
       <BlogForm />
     </div>

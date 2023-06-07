@@ -35,3 +35,38 @@ li {
     /* background-color: #2563eb; */
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
 }
+
+.blognode {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.material-symbols-outlined {
+    display: none;
+}
+
+@media only screen and (max-width: 768px) {
+    li {
+        display: none;
+    }
+
+    .blognode {
+        font-size: 1.2rem;
+        padding: 0.5rem;
+    }
+
+    .blognode-img {
+        width: 2.2rem;
+    }
+
+    .Navbar-list {
+        justify-content: space-between;
+        height: 4rem;
+    }
+
+    .material-symbols-outlined {
+        display: block;
+        padding: 0.5rem;
+    }
+}
