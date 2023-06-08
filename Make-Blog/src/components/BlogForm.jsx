@@ -2,7 +2,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { collection, addDoc } from "firebase/firestore";
-import { db } from "../firebase";
+import { db, auth, storage } from "../firebase";
+import { ref, uploadBytes } from "firebase/storage";
 import write from "../assets/write.svg";
 
 export default function BlogForm() {
@@ -30,26 +31,24 @@ export default function BlogForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Check if all the fields filled or not
-    if (blogData.title.trim() === "") {
-      alert("Article title cannot be left blank");
-      return;
-    }
-    if (blogData.content.trim() === "") {
-      alert("Article content cannot be left blank");
-      return;
-    }
-    if (blogData.image === null) {
-      alert("No file chosen");
-      return;
-    }
-
     // Create a new blog object
     const newBlog = {
       title: blogData.title,
       content: blogData.content,
       image: URL.createObjectURL(blogData.image),
+      userId: auth?.currentUser?.uid,
+      userName: auth?.currentUser?.displayName,
+      userImage: auth?.currentUser?.photoURL,
     };
+
+    // ImageFiles uploaded in the database
+    if (!blogData.image) return;
+    const filesFolderRef = ref(storage, `BlogsImages/${blogData.image.name}`);
+    try {
+      await uploadBytes(filesFolderRef, blogData.image);
+    } catch (error) {
+      console.error("Error is ", error);
+    }
 
     // Send the required data to the firebase database
     try {
@@ -59,9 +58,12 @@ export default function BlogForm() {
     }
 
     // Clear the form fields
-    setblogData({ ...blogData, title: "" });
-    setblogData({ ...blogData, content: "" });
-    setblogData({ ...blogData, image: null });
+    setblogData({
+      ...blogData,
+      title: "",
+      content: "",
+      image: null,
+    });
 
     // Navigate to home page
     navigate("/");
@@ -75,17 +77,20 @@ export default function BlogForm() {
         value={blogData.title}
         onChange={handleTitleChange}
         placeholder="Article Title..."
+        required
       />
       <textarea
         className="content-element"
         value={blogData.content}
         onChange={handleContentChange}
         placeholder="Article Content..."
+        required
       />
       <input
         className="file-element"
         type="file"
         onChange={handleImageChange}
+        required
       />
       <button type="submit">
         <img className="write-logo" src={write}></img>Create
