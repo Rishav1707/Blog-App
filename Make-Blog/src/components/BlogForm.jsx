@@ -3,7 +3,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { collection, addDoc } from "firebase/firestore";
 import { db, auth, storage } from "../firebase";
-import { ref, uploadBytes } from "firebase/storage";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { v4 } from "uuid";
 import write from "../assets/write.svg";
 
 export default function BlogForm() {
@@ -35,7 +36,6 @@ export default function BlogForm() {
     const newBlog = {
       title: blogData.title,
       content: blogData.content,
-      image: URL.createObjectURL(blogData.image),
       userId: auth?.currentUser?.uid,
       userName: auth?.currentUser?.displayName,
       userImage: auth?.currentUser?.photoURL,
@@ -43,18 +43,19 @@ export default function BlogForm() {
 
     // ImageFiles uploaded in the database
     if (!blogData.image) return;
-    const filesFolderRef = ref(storage, `BlogsImages/${blogData.image.name}`);
+    const filesFolderRef = ref(
+      storage,
+      `BlogsImages/${blogData.image.name + v4()}`
+    );
     try {
       await uploadBytes(filesFolderRef, blogData.image);
-    } catch (error) {
-      console.error("Error is ", error);
-    }
-
-    // Send the required data to the firebase database
-    try {
+      // Get Downloadable files URL
+      const url = await getDownloadURL(filesFolderRef);
+      newBlog.image = url;
+      // Send the required data to the firebase database
       await addDoc(blogCollection, newBlog);
     } catch (error) {
-      console.log("Error is ", error);
+      console.error("Error is ", error);
     }
 
     // Clear the form fields
