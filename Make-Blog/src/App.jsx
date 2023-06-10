@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CreatePost from "./pages/CreatePost";
+import ReadMore from "./pages/ReadMore";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import NavBar from "./components/NavBar";
@@ -19,6 +20,7 @@ function App() {
           path="/login"
           element={<Login isAuth={isAuth} setisAuth={setisAuth} />}
         />
+        <Route exact path="/readmore/:id" element={<ReadMore />} />
       </Routes>
     </BrowserRouter>
   );
