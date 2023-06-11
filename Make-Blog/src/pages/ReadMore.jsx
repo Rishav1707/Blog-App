@@ -29,8 +29,22 @@ export default function ReadMore() {
 
   return (
     <div className="ReadMore-Container">
-      <h1 className="ReadMore-Heading">My id is {id}</h1>
-      <h2>{targetData.title}</h2>
+      {targetData.image && (
+        <img
+          className="ReadMore-image"
+          src={targetData.image}
+          alt="BlogImage"
+        />
+      )}
+      <h2 className="ReadMore-heading">{targetData.title}</h2>
+      <p className="ReadMore-content">{targetData.content}</p>
+      <div className="ReadMore-userDetails">
+        <h3 className="ReadMore-userName">
+          <p className="contribution">Contributed by -</p>
+          <img className="userImage" src={targetData.userImage} />
+          {targetData.userName}
+        </h3>
+      </div>
     </div>
   );
 }

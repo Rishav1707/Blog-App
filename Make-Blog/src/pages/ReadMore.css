@@ -1,4 +1,71 @@
 .ReadMore-Container {
+    max-width: 70%;
+    padding: 2rem;
     position: absolute;
-    top: 10rem;
+    top: 8rem;
+}
+
+.ReadMore-image {
+    border-radius: 1rem;
+    width: 60%;
+}
+
+.ReadMore-heading {
+    font-size: 2rem;
+    letter-spacing: 0.025rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.ReadMore-content {
+    font-size: 1.2rem;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #94a3a5;
+    text-align: start;
+}
+
+.contribution {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.ReadMore-userDetails {
+    width: 100%;
+}
+
+.ReadMore-userName {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    color: #94a3a5;
+    gap: 0.5rem;
+}
+
+@media only screen and (max-width: 768px) {
+    .ReadMore-Container {
+        max-width: 95%;
+        top: 4rem;
+        padding: 1.2rem;
+    }
+
+    .ReadMore-image {
+        width: 80%;
+    }
+
+    .ReadMore-heading {
+        font-size: 1.2rem;
+    }
+
+    .ReadMore-content {
+        font-size: 1rem;
+        line-height: 1.35rem;
+    }
+
+    .contribution {
+        font-size: 0.75rem;
+    }
+
+    .ReadMore-userName {
+        font-size: 0.9rem;
+    }
 }

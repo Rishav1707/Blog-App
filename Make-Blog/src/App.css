@@ -294,6 +294,7 @@ button:hover {
   .Blog-Content {
     font-size: 1rem;
     line-height: 1.35rem;
+    height: 5.5rem;
   }
 
   .userImage {
@@ -302,5 +303,9 @@ button:hover {
 
   .userName {
     font-size: 0.9rem;
+  }
+
+  .Read-More-Text {
+    font-size: 0.8rem;
   }
 }
